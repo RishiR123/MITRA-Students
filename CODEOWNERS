@@ -1,0 +1,8 @@
+# Every pull request requires a review from a mentor before it can be merged.
+*                       @RishiR123
+
+# Course content and the LMS site are mentor-only.
+/courses/               @RishiR123
+/docs/                  @RishiR123
+/scripts/               @RishiR123
+/.github/               @RishiR123

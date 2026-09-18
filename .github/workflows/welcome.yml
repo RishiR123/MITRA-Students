@@ -1,0 +1,58 @@
+name: Welcome new students
+
+on:
+  pull_request_target:
+    types: [opened]
+  issues:
+    types: [opened]
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const isPR = !!context.payload.pull_request;
+            const item = context.payload.pull_request || context.payload.issue;
+            const author = item.user.login;
+
+            // Only greet people on their first contribution.
+            const { data: prior } = await github.rest.search.issuesAndPullRequests({
+              q: `repo:${context.repo.owner}/${context.repo.repo} author:${author}`,
+              per_page: 2,
+            });
+            if (prior.total_count > 1) return;
+
+            const body = isPR
+              ? [
+                  `Welcome to MITRA, @${author} — this is your first pull request here. 🎉`,
+                  ``,
+                  `Here's what happens now:`,
+                  ``,
+                  `1. **Automated checks are running.** They take about 30 seconds. If one fails, click **Details** next to it — it will tell you exactly what to fix.`,
+                  `2. **A mentor will review your work**, usually within 2 working days.`,
+                  `3. **If changes are requested**, don't open a new PR. Just commit and \`git push\` to the same branch — this pull request updates itself.`,
+                  ``,
+                  `While you wait, make sure your PR description explains what you built and what you struggled with. That second part is what mentors read most closely.`,
+                  ``,
+                  `[Submission guide](../blob/main/CONTRIBUTING.md) · [Ask a doubt](../issues/new?template=doubt.yml)`,
+                ].join('\n')
+              : [
+                  `Welcome to MITRA, @${author}. 👋`,
+                  ``,
+                  `Thanks for opening your first issue. A mentor will pick this up shortly — and other students are welcome to chip in before that.`,
+                  ``,
+                  `If you're waiting on an answer, the [course site](https://rishir123.github.io/MITRA-Students/) and [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md) cover most of the common questions.`,
+                ].join('\n');
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: item.number,
+              body,
+            });

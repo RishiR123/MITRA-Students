@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Ask other students
+    url: https://github.com/RishiR123/MITRA-Students/discussions
+    about: General chat, study partners, sharing what you're working on.
+  - name: 📚 How do I submit my project?
+    url: https://github.com/RishiR123/MITRA-Students/blob/main/CONTRIBUTING.md
+    about: The full pull request walkthrough. Read this before asking.
+  - name: 📺 Course site
+    url: https://rishir123.github.io/MITRA-Students/
+    about: All the video lessons and module material.

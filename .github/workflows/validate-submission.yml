@@ -1,0 +1,53 @@
+name: Validate submission
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Check submission
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+
+    steps:
+      - name: Check out the pull request
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Make the base branch available
+        run: git fetch origin ${{ github.base_ref }}:refs/remotes/origin/${{ github.base_ref }} --depth=200 || true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Validate
+        run: |
+          python3 scripts/validate_submission.py \
+            --author "${{ github.event.pull_request.user.login }}" \
+            --base "origin/${{ github.base_ref }}"
+
+      - name: Explain a failure
+        if: failure()
+        run: |
+          echo "### Submission checks failed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Open the **Validate** step above — it lists exactly what to fix." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Fix it, commit, and \`git push\` to the same branch. This pull request updates itself — do not open a new one." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Full guide: [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md)" >> $GITHUB_STEP_SUMMARY
+
+      - name: Confirm a pass
+        if: success()
+        run: |
+          echo "### Submission checks passed ✅" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Structure, \`student.json\`, file scope and secret scanning all look good." >> $GITHUB_STEP_SUMMARY
+          echo "A mentor will review your work — usually within 2 working days." >> $GITHUB_STEP_SUMMARY

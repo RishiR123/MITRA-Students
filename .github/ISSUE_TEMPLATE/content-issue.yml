@@ -1,0 +1,46 @@
+name: 🐞 Report a content problem
+description: Broken video, wrong instructions, typo, dead link.
+title: "[Content] "
+labels: ["content", "bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for catching this. Course content problems get fixed fast — you're
+        helping every student behind you.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem?
+      options:
+        - Video won't play / wrong video
+        - Instructions don't work as described
+        - Code sample is wrong or outdated
+        - Dead or wrong link
+        - Typo or unclear wording
+        - Something else
+    validations:
+      required: true
+
+  - type: input
+    id: where
+    attributes:
+      label: Where is it?
+      description: Module and lesson, or paste the URL.
+      placeholder: "Module 2, lesson 2.4 — Flexbox"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What's wrong?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What should it say or do instead?
+      description: If you know the fix, tell us — or open a PR against `courses/`.

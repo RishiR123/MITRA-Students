@@ -1,0 +1,48 @@
+name: 👋 Introduce yourself
+description: First thing to do after you accept your invite.
+title: "[Hello] "
+labels: ["introduction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Welcome to MITRA. This issue is also your first tiny GitHub exercise — you're
+        using the same interface you'll use to ask for help all program.
+
+  - type: input
+    id: name
+    attributes:
+      label: Your name
+    validations:
+      required: true
+
+  - type: input
+    id: where
+    attributes:
+      label: Where are you based?
+      placeholder: "Chennai, India"
+
+  - type: dropdown
+    id: experience
+    attributes:
+      label: How much have you coded before?
+      options:
+        - Complete beginner — this is my first time
+        - I've done a bit of tutorials / college coursework
+        - I can build small things on my own
+        - I've built and shipped something real
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: What do you want to be able to do by the end of this?
+      placeholder: "Build and deploy a web app without following a tutorial."
+    validations:
+      required: true
+
+  - type: input
+    id: fun
+    attributes:
+      label: One thing about you that isn't code

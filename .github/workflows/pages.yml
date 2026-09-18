@@ -1,0 +1,53 @@
+name: Deploy course site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**'
+      - 'courses/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble the site
+        run: |
+          mkdir -p _site
+          cp -r docs/. _site/
+          # The syllabus and lesson notes live in courses/ so they're reviewable as
+          # plain Markdown in pull requests. Copy them in so the site can fetch them.
+          mkdir -p _site/data
+          cp courses/courses.json _site/data/courses.json
+          cp -r courses _site/courses
+          touch _site/.nojekyll
+
+      - name: Check the syllabus is valid JSON
+        run: python3 -c "import json;d=json.load(open('_site/data/courses.json'));print(f\"{len(d['modules'])} modules, {sum(len(m['lessons']) for m in d['modules'])} lessons\")"
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

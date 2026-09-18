@@ -1,0 +1,70 @@
+name: 💡 Propose a capstone project
+description: Pitch your own idea for Module 5 and get it approved before you build.
+title: "[Proposal] "
+labels: ["proposal", "capstone", "needs-mentor"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Get your idea approved **before** you start building. It takes a day and saves
+        you three weeks of building the wrong thing.
+
+  - type: input
+    id: title
+    attributes:
+      label: Project name
+      placeholder: "Campus lost-and-found board"
+    validations:
+      required: true
+
+  - type: textarea
+    id: pitch
+    attributes:
+      label: What is it, in two sentences?
+      description: If you can't explain it in two sentences, the scope is too big.
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Who is it for, and what problem does it solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: features
+    attributes:
+      label: Core features
+      description: The 3–5 things it must do to be considered finished.
+      placeholder: |
+        - Post a found item with a photo
+        - Search items by category and date
+        - Claim an item and message the finder
+    validations:
+      required: true
+
+  - type: textarea
+    id: stack
+    attributes:
+      label: What will you build it with?
+      placeholder: "React + Vite, Supabase for auth and storage, deployed on Vercel"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Realistically, how long will this take you?
+      options:
+        - 1–2 weeks
+        - 3–4 weeks
+        - More than a month
+    validations:
+      required: true
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: What's the part you're least sure about?
+      description: The bit you don't know how to do yet. Name it now so we can help early.
