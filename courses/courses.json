@@ -26,9 +26,10 @@
         {
           "id": "1.1",
           "title": "ANN Regression — training one neuron in PyTorch",
-          "duration": "—",
+          "duration": "24:14",
           "video": {
-            "provider": "pending"
+            "provider": "youtube",
+            "id": "jRsZXNzHoyc"
           },
           "notes": "courses/01-ann-regression/1.1-ann-regression.md",
           "resources": [

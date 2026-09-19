@@ -123,18 +123,16 @@ header {
 }
 .icon-btn:hover { background: var(--inset); color: var(--ink); }
 
-/* The lesson rail is only worth its space once there are lessons to move between. */
+/* The menu button is the rail's handle — only needed once the rail is off-canvas. */
 .nav-only { display: none; }
-body.has-rail .nav-only { display: grid; }
 
 /* ─── Sidebar ─────────────────────────────────────────────────────────── */
 
 #sidebar {
   position: fixed; top: var(--header); bottom: 0; left: 0; width: var(--sidebar);
-  display: none; flex-direction: column; z-index: 30;
+  display: flex; flex-direction: column; z-index: 30;
   background: var(--paper-2); border-right: 1px solid var(--rule);
 }
-body.has-rail #sidebar { display: flex; }
 
 .sidebar-top { padding: 16px 16px 12px; border-bottom: 1px solid var(--rule); }
 
@@ -205,15 +203,15 @@ body.nav-open #backdrop { opacity: 1; pointer-events: auto; }
   position: fixed; inset: var(--header) 0 0 0; overflow-y: auto;
   scroll-behavior: smooth;
 }
-body.has-rail #main { left: var(--sidebar); }
+#main { left: var(--sidebar); }
 
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px 100px; }
 
 /* ─── Hero ────────────────────────────────────────────────────────────── */
 
 .hero {
-  display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
-  gap: 54px; align-items: center; padding: 64px 0 60px;
+  display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 46px; align-items: center; padding: 54px 0 52px;
 }
 
 .hero-eyebrow {
@@ -223,7 +221,7 @@ body.has-rail #main { left: var(--sidebar); }
 
 .hero h1 {
   font-family: var(--serif); font-weight: 600;
-  font-size: clamp(38px, 5vw, 60px); line-height: 1.02; letter-spacing: -0.028em;
+  font-size: clamp(34px, 3.6vw, 52px); line-height: 1.04; letter-spacing: -0.028em;
   margin: 0 0 22px; text-wrap: balance;
 }
 
@@ -318,31 +316,20 @@ body.has-rail #main { left: var(--sidebar); }
 .brief p { margin: 0 0 18px; color: var(--ink-soft); }
 .brief p:last-child { margin-bottom: 0; }
 
-/* ─── Lesson view ─────────────────────────────────────────────────────── */
+/* ─── Lesson view ─────────────────────────────────────────────────────
+   Video first, the way a course platform does it: the player owns the top of
+   the screen, everything else is tabbed underneath. */
 
-.crumb { padding: 30px 0 0; font-size: 13.5px; color: var(--ink-faint); font-family: var(--mono); }
-.crumb a { color: var(--ink-soft); text-decoration: none; }
-.crumb a:hover { color: var(--line); }
-
-.lesson-head { max-width: 76ch; }
-.lesson-head h1 {
-  font-family: var(--serif); font-weight: 600;
-  font-size: clamp(30px, 3.6vw, 42px); line-height: 1.1; letter-spacing: -0.025em;
-  margin: 14px 0 12px; text-wrap: balance;
+.stage {
+  background: var(--inset); border-bottom: 1px solid var(--rule);
+  padding: 22px 28px;
 }
-
-.lesson-meta {
-  display: flex; flex-wrap: wrap; gap: 18px; align-items: center;
-  font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint);
-  padding-bottom: 26px;
-}
-.lesson-meta span { display: inline-flex; align-items: center; gap: 6px; }
-.lesson-meta .is-done { color: var(--done); }
+.stage .player { max-width: 1000px; margin: 0 auto; }
 
 .player {
-  position: relative; aspect-ratio: 16 / 9; max-width: 940px;
+  position: relative; aspect-ratio: 16 / 9;
   border: 1px solid var(--rule-firm); border-radius: var(--r);
-  background: var(--inset); overflow: hidden;
+  background: #000; overflow: hidden;
 }
 .player iframe, .player video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
@@ -358,18 +345,68 @@ body.has-rail #main { left: var(--sidebar); }
 .player-pending .small { font-size: 14px; color: var(--ink-soft); max-width: 62ch; line-height: 1.6; }
 .player-pending code { font-family: var(--mono); font-size: 12.5px; color: var(--line); }
 
-.actions { display: flex; flex-wrap: wrap; gap: 10px; padding: 22px 0 0; }
-
-/* Notebook callout — the artifact of this course */
-.artifact {
-  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
-  margin: 30px 0 0; padding: 18px 20px; max-width: 940px;
-  border: 1px solid var(--rule-firm); border-radius: var(--r); background: var(--paper-2);
+.lesson-bar {
+  display: flex; align-items: flex-start; gap: 24px; flex-wrap: wrap;
+  padding: 30px 0 22px;
 }
-.artifact-mark { flex: none; color: var(--line); }
-.artifact-text { flex: 1; min-width: 200px; }
-.artifact-text b { display: block; font-size: 15px; font-weight: 600; }
-.artifact-text span { font-size: 13.5px; color: var(--ink-soft); }
+.lesson-bar-text { flex: 1; min-width: 260px; }
+
+.crumb { margin: 0; font-size: 12.5px; color: var(--ink-faint); font-family: var(--mono); }
+.crumb a { color: var(--ink-soft); text-decoration: none; }
+.crumb a:hover { color: var(--line); }
+
+.lesson-bar h1 {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(26px, 3vw, 35px); line-height: 1.12; letter-spacing: -0.024em;
+  margin: 9px 0 9px; text-wrap: balance; max-width: 24ch;
+}
+
+.lesson-meta {
+  display: flex; flex-wrap: wrap; gap: 18px; align-items: center; margin: 0;
+  font-family: var(--mono); font-size: 12.5px; color: var(--ink-faint);
+}
+.lesson-meta span { display: inline-flex; align-items: center; gap: 6px; }
+.lesson-meta .is-done { color: var(--done); }
+
+/* ─── Tabs ────────────────────────────────────────────────────────────── */
+
+.tabs {
+  display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none;
+  border-bottom: 1px solid var(--rule); margin-bottom: 8px;
+}
+.tabs::-webkit-scrollbar { display: none; }
+
+.tab {
+  padding: 11px 15px; font-size: 14.5px; font-weight: 500; white-space: nowrap;
+  color: var(--ink-soft); border-bottom: 2px solid transparent; margin-bottom: -1px;
+}
+.tab:hover { color: var(--ink); }
+.tab.active { color: var(--line); border-bottom-color: var(--line); font-weight: 600; }
+
+.panel { display: none; padding-top: 18px; }
+.panel.active { display: block; }
+
+/* ─── Files (the Run it tab) ──────────────────────────────────────────── */
+
+.files { display: grid; gap: 10px; max-width: 72ch; }
+.file {
+  display: flex; align-items: center; gap: 15px; padding: 16px 18px;
+  border: 1px solid var(--rule-firm); border-radius: var(--r);
+  background: var(--paper-2); color: var(--ink); text-decoration: none;
+}
+.file:hover { border-color: var(--line-edge); }
+.file-mark { flex: none; color: var(--line); display: grid; place-items: center; }
+.file-text { min-width: 0; }
+.file-text b { display: block; font-family: var(--mono); font-size: 14px; font-weight: 600; }
+.file-text span { font-size: 13.5px; color: var(--ink-soft); }
+
+.run-steps { max-width: 72ch; margin-top: 26px; }
+.run-steps p { margin: 0 0 12px; color: var(--ink-soft); }
+.run-steps pre {
+  margin: 0 0 16px; padding: 15px 17px; overflow-x: auto;
+  background: var(--inset); border: 1px solid var(--rule); border-radius: var(--r-sm);
+  font-family: var(--mono); font-size: 13.5px; line-height: 1.65;
+}
 
 /* ─── Notes (rendered Markdown) ───────────────────────────────────────── */
 
@@ -462,13 +499,14 @@ body.has-rail #main { left: var(--sidebar); }
 
 /* ─── Responsive ──────────────────────────────────────────────────────── */
 
-@media (max-width: 1080px) {
+@media (max-width: 1240px) {
   .hero { grid-template-columns: 1fr; gap: 38px; padding: 46px 0 44px; }
   .hero-lede { max-width: 58ch; }
 }
 
 @media (max-width: 860px) {
-  body.has-rail #main { left: 0; }
+  #main { left: 0; }
+  .nav-only { display: grid; }
   #sidebar { transform: translateX(-100%); transition: transform .24s ease; box-shadow: var(--lift); }
   body.nav-open #sidebar { transform: none; }
   .header-links { display: none; }
@@ -480,6 +518,8 @@ body.has-rail #main { left: var(--sidebar); }
 @media (max-width: 560px) {
   body { background-size: 88px 88px, 88px 88px, 22px 22px, 22px 22px; }
   .wrap { padding: 0 16px 70px; }
+  .stage { padding: 0; border-bottom: 0; }
+  .stage .player { border-radius: 0; border-left: 0; border-right: 0; border-top: 0; }
   .hero { padding: 34px 0 34px; }
   .fit-readout { gap: 14px; font-size: 11.5px; }
   .btn { flex: 1; justify-content: center; }

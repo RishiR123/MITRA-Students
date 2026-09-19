@@ -22,6 +22,7 @@ const ICON = {
   clock: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>`,
   link:  `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>`,
   pr:    `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M6 8.5v7M8.5 6H14a3 3 0 0 1 3 3v6.5"/></svg>`,
+  table: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9.5h18M9 9.5V20M3 15h18"/></svg>`,
   book:  `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H19v15H5.5A1.5 1.5 0 0 0 4 19.5z"/><path d="M4 19.5A1.5 1.5 0 0 1 5.5 18H19v3H5.5A1.5 1.5 0 0 1 4 19.5z"/><path d="M8.5 8h6M8.5 12h4"/></svg>`,
 };
 
@@ -256,8 +257,6 @@ function overallStats() {
 }
 
 function renderSidebar(activeId = null, filter = '') {
-  if (!document.body.classList.contains('has-rail')) return;
-
   const toc = $('#toc');
   const q = filter.trim().toLowerCase();
 
@@ -405,57 +404,86 @@ async function renderLesson(modId, lessonId) {
   const prev = flat[idx - 1], next = flat[idx + 1];
   const complete = isDone(lesson.id);
   const notebook = (lesson.resources || []).find((r) => /\.ipynb$/.test(r.url));
-  const reading = (lesson.resources || []).filter((r) => r !== notebook);
+  const data = (lesson.resources || []).find((r) => /\.csv$/.test(r.url));
+  const reading = (lesson.resources || []).filter((r) => r !== notebook && r !== data);
 
   $('#main').innerHTML = `
-    <div class="wrap">
-      <p class="crumb"><a href="#/">${esc(course.program)}</a> / ${esc(mod.title)}</p>
-
-      <div class="lesson-head">
-        <h1>${esc(lesson.title)}</h1>
-      </div>
-      <div class="lesson-meta">
-        <span>lesson ${esc(lesson.id)}</span>
-        ${lesson.duration && lesson.duration !== '—' ? `<span>${ICON.clock} ${esc(lesson.duration)}</span>` : ''}
-        ${complete ? `<span class="is-done">${ICON.check} completed</span>` : ''}
-      </div>
-
+    <div class="stage">
       <div class="player${hasVideo(lesson) ? '' : ' is-pending'}">${playerHTML(lesson)}</div>
+    </div>
 
-      ${notebook ? `
-        <div class="artifact">
-          <span class="artifact-mark">${ICON.book}</span>
-          <span class="artifact-text">
-            <b>Run it yourself</b>
-            <span>The notebook and its dataset, ready to open.</span>
-          </span>
-          <a class="btn btn-ghost" href="${esc(notebook.url)}" target="_blank" rel="noopener">Open the notebook</a>
-        </div>` : ''}
-
-      <div class="actions">
+    <div class="wrap">
+      <div class="lesson-bar">
+        <div class="lesson-bar-text">
+          <p class="crumb"><a href="#/">${esc(course.program)}</a> / ${esc(mod.title)} / lesson ${esc(lesson.id)}</p>
+          <h1>${esc(lesson.title)}</h1>
+          <p class="lesson-meta">
+            ${lesson.duration && lesson.duration !== '—' ? `<span>${ICON.clock} ${esc(lesson.duration)}</span>` : ''}
+            ${complete ? `<span class="is-done">${ICON.check} completed</span>` : ''}
+          </p>
+        </div>
         <button class="btn ${complete ? 'btn-ghost' : 'btn-done'}" id="toggle-done">
           ${complete ? 'Mark as not done' : `${ICON.check} Mark complete`}
         </button>
-        <a class="btn btn-ghost" href="${REPO}/issues/new?template=doubt.yml" target="_blank" rel="noopener">
-          Ask a doubt
-        </a>
-        ${mod.project ? `
-          <a class="btn btn-ghost" href="${REPO}/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">
-            ${ICON.pr} Submit your project
-          </a>` : ''}
       </div>
 
-      <div class="notes" id="notes"><p class="loading">Loading the notes</p></div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" role="tab" aria-selected="true"  data-tab="notes">Notes</button>
+        ${notebook ? `<button class="tab" role="tab" aria-selected="false" data-tab="run">Run it</button>` : ''}
+        ${reading.length ? `<button class="tab" role="tab" aria-selected="false" data-tab="more">Further reading</button>` : ''}
+        <button class="tab" role="tab" aria-selected="false" data-tab="submit">Your project</button>
+      </div>
+
+      <section class="panel active" data-panel="notes">
+        <div class="notes" id="notes"><p class="loading">Loading the notes</p></div>
+      </section>
+
+      ${notebook ? `
+        <section class="panel" data-panel="run">
+          <div class="files">
+            <a class="file" href="${esc(notebook.url)}" target="_blank" rel="noopener">
+              <span class="file-mark">${ICON.book}</span>
+              <span class="file-text"><b>ann-regression.ipynb</b>
+                <span>The notebook from the video. Open it on GitHub, or download and run it locally.</span></span>
+            </a>
+            ${data ? `
+              <a class="file" href="${esc(data.url)}" target="_blank" rel="noopener">
+                <span class="file-mark">${ICON.table}</span>
+                <span class="file-text"><b>Student_Performance.csv</b>
+                  <span>10,000 rows. Keep it next to the notebook and it loads itself.</span></span>
+              </a>` : ''}
+          </div>
+          <div class="run-steps">
+            <p>Two lines to get going:</p>
+            <pre><code>pip install torch pandas
+jupyter notebook ann-regression.ipynb</code></pre>
+            <p>On Colab, upload the CSV first — the notebook checks both places.</p>
+          </div>
+        </section>` : ''}
 
       ${reading.length ? `
-        <section class="band">
-          <h2>Further reading</h2>
+        <section class="panel" data-panel="more">
           <ul class="resources">
             ${reading.map((r) => `
               <li><a href="${esc(r.url)}" target="_blank" rel="noopener">${ICON.link}${esc(r.label)}</a></li>
             `).join('')}
           </ul>
         </section>` : ''}
+
+      <section class="panel" data-panel="submit">
+        <div class="brief">
+          <h3>What you hand in</h3>
+          <p>${esc(mod.project || 'Build on the lesson and submit it as a pull request.')}</p>
+          <div class="hero-actions">
+            <a class="btn btn-ghost" href="${REPO}/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener">
+              ${ICON.pr} How to submit it
+            </a>
+            <a class="btn btn-ghost" href="${REPO}/issues/new?template=doubt.yml" target="_blank" rel="noopener">
+              Ask a doubt
+            </a>
+          </div>
+        </div>
+      </section>
 
       <div class="pager">
         ${prev
@@ -470,6 +498,19 @@ async function renderLesson(modId, lessonId) {
   document.title = `${lesson.title} — ${course.program}`;
   renderSidebar(lesson.id, $('#search').value);
   $('#main').scrollTop = 0;
+
+  for (const tab of $('#main').querySelectorAll('.tab')) {
+    tab.addEventListener('click', () => {
+      for (const t of $('#main').querySelectorAll('.tab')) {
+        const on = t === tab;
+        t.classList.toggle('active', on);
+        t.setAttribute('aria-selected', String(on));
+      }
+      for (const pane of $('#main').querySelectorAll('.panel')) {
+        pane.classList.toggle('active', pane.dataset.panel === tab.dataset.tab);
+      }
+    });
+  }
 
   $('#toggle-done').addEventListener('click', () => {
     const nowDone = !isDone(lesson.id);
@@ -588,9 +629,6 @@ async function boot() {
   }
 
   flat = course.modules.flatMap((mod) => mod.lessons.map((l) => ({ ...l, mod })));
-
-  // A rail to move between lessons only earns its width once there are several.
-  if (flat.length > 3) document.body.classList.add('has-rail');
 
   window.addEventListener('hashchange', route);
   route();

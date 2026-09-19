@@ -5,9 +5,14 @@ training loop that every larger network is built from.
 
 ## Watch
 
-> **The video isn't linked yet.** Drop the YouTube link in and this section becomes a
-> clickable thumbnail here, and a real embedded player on the
-> [course site](https://rishir123.github.io/MITRA-Students/).
+[![ANN Regression — training one neuron in PyTorch](https://i.ytimg.com/vi/jRsZXNzHoyc/maxresdefault.jpg)](https://youtu.be/jRsZXNzHoyc)
+
+**[ANN Regression — training one neuron in PyTorch](https://youtu.be/jRsZXNzHoyc)** · 24:14
+
+GitHub strips `<iframe>` out of Markdown, so the image above opens the video on YouTube.
+For a player embedded in the page, watch it on the
+[course site](https://rishir123.github.io/MITRA-Students/#/module-1/1.1) — the notes,
+the notebook and your progress sit alongside it there.
 
 ## Read
 
