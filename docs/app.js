@@ -4,6 +4,15 @@
 const $ = (sel, root = document) => root.querySelector(sel);
 const REPO = 'https://github.com/RishiR123/MITRA-Students';
 
+/* Pages serves these with max-age=600, so a returning browser can run last week's
+   app against this week's syllabus. The deploy stamps this file's URL with the commit
+   sha; carry it onto everything we fetch so a release invalidates as one unit. */
+const BUILD = (() => {
+  try { return new URL(document.currentScript.src).searchParams.get('v') || ''; }
+  catch { return ''; }
+})();
+const versioned = (url) => (BUILD ? url + (url.includes('?') ? '&' : '?') + 'v=' + BUILD : url);
+
 let course = null;
 let flat = [];                    // every lesson, in order, each carrying its module
 const notesCache = new Map();
@@ -568,7 +577,7 @@ async function loadNotes(path) {
   // The site is served from docs/, the notes live in courses/ — try both.
   for (const url of [path, `../${path}`]) {
     try {
-      const res = await fetch(url);
+      const res = await fetch(versioned(url));
       if (!res.ok) continue;
       const html = adoptNotes(renderMarkdown(await res.text()), path);
       notesCache.set(path, html);
@@ -590,31 +599,13 @@ function route() {
   else renderHome();
 }
 
-/* ── theme ───────────────────────────────────────────────────────────── */
-
-const THEME_KEY = 'mitra.theme';
-
-function applyTheme(t) {
-  document.documentElement.dataset.theme = t;
-  $('#theme-btn').setAttribute('aria-label',
-    t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-  try { localStorage.setItem(THEME_KEY, t); } catch { /* private mode */ }
-}
-
 /* ── boot ────────────────────────────────────────────────────────────── */
 
 async function boot() {
-  try {
-    const saved = localStorage.getItem(THEME_KEY);
-    if (saved) document.documentElement.dataset.theme = saved;
-    else if (window.matchMedia('(prefers-color-scheme: dark)').matches)
-      document.documentElement.dataset.theme = 'dark';
-  } catch { /* private mode */ }
-
   // Pages copies the syllabus to data/; locally it's still in courses/.
   for (const url of ['data/courses.json', '../courses/courses.json']) {
     try {
-      const res = await fetch(url);
+      const res = await fetch(versioned(url));
       if (!res.ok) continue;
       course = await res.json();
       break;
@@ -650,10 +641,6 @@ async function boot() {
     $('#menu-btn').setAttribute('aria-expanded', String(open));
   });
   $('#backdrop').addEventListener('click', () => document.body.classList.remove('nav-open'));
-
-  $('#theme-btn').addEventListener('click', () => {
-    applyTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark');
-  });
 
   $('#search').addEventListener('input', (e) => {
     const active = location.hash.match(/^#\/[^/]+\/([^/]+)$/)?.[1] || null;

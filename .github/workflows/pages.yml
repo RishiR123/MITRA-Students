@@ -35,6 +35,14 @@ jobs:
           cp -r courses _site/courses
           touch _site/.nojekyll
 
+          # Pages serves assets with max-age=600, so returning browsers can pair an
+          # old app.js with a new syllabus. Stamp the commit onto the asset URLs so
+          # each deploy invalidates as one unit. app.js reads the same ?v= back off
+          # its own src and carries it onto everything it fetches.
+          V="${GITHUB_SHA::8}"
+          sed -i "s|href=\"styles.css\"|href=\"styles.css?v=$V\"|; s|src=\"app.js\"|src=\"app.js?v=$V\"|" _site/index.html
+          grep -q "app.js?v=$V" _site/index.html || { echo "asset stamping failed"; exit 1; }
+
       - name: Check the syllabus is valid JSON
         run: python3 -c "import json;d=json.load(open('_site/data/courses.json'));print(f\"{len(d['modules'])} modules, {sum(len(m['lessons']) for m in d['modules'])} lessons\")"
 

@@ -1,73 +1,42 @@
 /* MITRA course site
-   Plotting paper. Quiet field of data, one confident line.
-   Tokens on :root, overridden under [data-theme="dark"]. */
+   White paper, ink, and one institutional navy. Light only — no dark theme. */
 
 :root {
-  --paper:      #FAFAF8;
+  --paper:      #FFFFFF;
   --paper-2:    #FFFFFF;
-  --inset:      #F1F1EC;
-  --grid:       rgba(22, 32, 46, 0.055);
-  --grid-major: rgba(22, 32, 46, 0.10);
-  --rule:       #E0E0D8;
-  --rule-firm:  #C9C9BE;
+  --inset:      #F4F6F9;
+  --inset-2:    #EDF0F5;
+  --rule:       #E2E6EC;
+  --rule-firm:  #C8CFDA;
 
-  --ink:        #16202E;
-  --ink-soft:   #5A6675;
-  --ink-faint:  #8B94A1;
+  --ink:        #0F1826;
+  --ink-soft:   #4A5566;
+  --ink-faint:  #78849A;
 
-  --line:       #A8322A;   /* the fitted line — the one bold mark */
-  --line-soft:  rgba(168, 50, 42, 0.10);
-  --line-edge:  rgba(168, 50, 42, 0.28);
-  --point:      #16202E;   /* the data */
-  --done:       #1B7A54;
-  --done-soft:  rgba(27, 122, 84, 0.11);
+  --line:       #16386E;   /* institutional navy — links, marks, the fitted line */
+  --line-deep:  #0D2450;
+  --line-soft:  rgba(22, 56, 110, 0.07);
+  --line-edge:  rgba(22, 56, 110, 0.26);
+  --point:      #64728A;   /* the data: quiet graphite */
+  --done:       #17694A;
+  --done-soft:  rgba(23, 105, 74, 0.10);
 
-  --r:     10px;
-  --r-sm:  6px;
+  --r:     8px;
+  --r-sm:  5px;
   --sidebar: 300px;
-  --header:  58px;
+  --header:  62px;
 
-  --lift: 0 1px 2px rgba(22,32,46,.05), 0 10px 28px -12px rgba(22,32,46,.16);
+  --lift: 0 1px 2px rgba(15, 24, 38, .04), 0 8px 24px -14px rgba(15, 24, 38, .14);
   --sans:  "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
   --serif: "IBM Plex Serif", Georgia, "Times New Roman", serif;
   --mono:  "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-}
-
-:root[data-theme="dark"] {
-  --paper:      #10151C;
-  --paper-2:    #161C25;
-  --inset:      #0C1118;
-  --grid:       rgba(214, 226, 240, 0.045);
-  --grid-major: rgba(214, 226, 240, 0.085);
-  --rule:       #242C38;
-  --rule-firm:  #38424F;
-
-  --ink:        #E6EBF2;
-  --ink-soft:   #97A3B2;
-  --ink-faint:  #6B7686;
-
-  --line:       #E4584A;
-  --line-soft:  rgba(228, 88, 74, 0.13);
-  --line-edge:  rgba(228, 88, 74, 0.34);
-  --point:      #AEBDD0;
-  --done:       #3FBF8B;
-  --done-soft:  rgba(63, 191, 139, 0.14);
-
-  --lift: 0 1px 2px rgba(0,0,0,.4), 0 12px 30px -14px rgba(0,0,0,.6);
 }
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; height: 100%; }
 
 body {
-  background-color: var(--paper);
-  /* plotting paper: 22px minor grid, 110px major */
-  background-image:
-    linear-gradient(var(--grid-major) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
-    linear-gradient(var(--grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 110px 110px, 110px 110px, 22px 22px, 22px 22px;
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--sans);
   font-size: 15.5px;
@@ -98,13 +67,13 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 header {
   position: fixed; inset: 0 0 auto 0; height: var(--header); z-index: 40;
   display: flex; align-items: center; gap: 14px; padding: 0 18px;
-  background: color-mix(in srgb, var(--paper) 88%, transparent);
-  backdrop-filter: saturate(1.6) blur(12px);
+  background: var(--paper);
   border-bottom: 1px solid var(--rule);
 }
 
 .brand { display: flex; align-items: center; gap: 9px; color: var(--ink); text-decoration: none; }
 .brand-mark { color: var(--line); flex: none; }
+.brand-name { color: var(--ink); }
 .brand-name {
   font-family: var(--serif); font-weight: 600; font-size: 19px; letter-spacing: -0.015em;
 }
@@ -131,7 +100,7 @@ header {
 #sidebar {
   position: fixed; top: var(--header); bottom: 0; left: 0; width: var(--sidebar);
   display: flex; flex-direction: column; z-index: 30;
-  background: var(--paper-2); border-right: 1px solid var(--rule);
+  background: var(--paper); border-right: 1px solid var(--rule);
 }
 
 .sidebar-top { padding: 16px 16px 12px; border-bottom: 1px solid var(--rule); }
@@ -183,7 +152,7 @@ header {
   padding: 7px 8px; border-radius: var(--r-sm); color: var(--ink-soft); font-size: 13.5px;
 }
 .lesson:hover { background: var(--inset); color: var(--ink); }
-.lesson.active { background: var(--line-soft); color: var(--line); font-weight: 550; }
+.lesson.active { background: var(--line-soft); color: var(--line); font-weight: 600; }
 .lesson .tick { flex: none; width: 14px; color: transparent; }
 .lesson.done .tick { color: var(--done); }
 .lesson.done .lesson-name { color: var(--ink-faint); }
@@ -267,11 +236,11 @@ body.nav-open #backdrop { opacity: 1; pointer-events: auto; }
   border: 1px solid transparent; transition: background .16s, border-color .16s;
 }
 .btn-primary { background: var(--line); color: #fff; border-color: var(--line); }
-.btn-primary:hover { background: color-mix(in srgb, var(--line) 86%, #000); }
+.btn-primary:hover { background: var(--line-deep); border-color: var(--line-deep); }
 .btn-ghost { color: var(--ink); border-color: var(--rule-firm); background: var(--paper-2); }
 .btn-ghost:hover { background: var(--inset); }
 .btn-done { background: var(--done); color: #fff; border-color: var(--done); }
-.btn-done:hover { background: color-mix(in srgb, var(--done) 86%, #000); }
+.btn-done:hover { background: #12563B; border-color: #12563B; }
 
 /* ─── Sections ────────────────────────────────────────────────────────── */
 
@@ -322,7 +291,7 @@ body.nav-open #backdrop { opacity: 1; pointer-events: auto; }
 
 .stage {
   background: var(--inset); border-bottom: 1px solid var(--rule);
-  padding: 22px 28px;
+  padding: 24px 28px;
 }
 .stage .player { max-width: 1000px; margin: 0 auto; }
 
@@ -516,7 +485,6 @@ body.nav-open #backdrop { opacity: 1; pointer-events: auto; }
 }
 
 @media (max-width: 560px) {
-  body { background-size: 88px 88px, 88px 88px, 22px 22px, 22px 22px; }
   .wrap { padding: 0 16px 70px; }
   .stage { padding: 0; border-bottom: 0; }
   .stage .player { border-radius: 0; border-left: 0; border-right: 0; border-top: 0; }
