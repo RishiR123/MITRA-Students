@@ -7,7 +7,7 @@ training loop that every larger network is built from.
 
 [![ANN Regression — training one neuron in PyTorch](https://i.ytimg.com/vi/5dN0udYRE9U/hqdefault.jpg)](https://youtu.be/5dN0udYRE9U)
 
-**[ANN Regression — training one neuron in PyTorch](https://youtu.be/5dN0udYRE9U)**
+**[ANN Regression — training one neuron in PyTorch](https://youtu.be/5dN0udYRE9U)** · 24:14
 
 GitHub strips `<iframe>` out of Markdown, so the image above opens the video on YouTube.
 For a player embedded in the page, watch it on the
