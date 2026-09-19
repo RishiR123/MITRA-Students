@@ -210,6 +210,11 @@ function startFit() {
 
 /* ── video ───────────────────────────────────────────────────────────── */
 
+/* An em dash means "not known yet" — show nothing rather than a stray mark. */
+const durationLabel = (l) =>
+  l.video?.provider === 'pending' ? 'soon'
+  : (l.duration && l.duration !== '—' ? l.duration : '');
+
 function hasVideo(lesson) {
   const v = lesson.video;
   if (!v) return false;
@@ -308,7 +313,7 @@ function renderSidebar(activeId = null, filter = '') {
               <span class="tick">${ICON.check}</span>
               <span class="lesson-name">${esc(l.id)}&nbsp; ${esc(l.title)}</span>
               <span class="lesson-dur ${l.video?.provider === 'pending' ? 'pending' : ''}">
-                ${l.video?.provider === 'pending' ? 'soon' : esc(l.duration || '')}
+                ${esc(durationLabel(l))}
               </span>
             </button>`).join('')}
         </div>
