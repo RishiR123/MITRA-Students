@@ -13,14 +13,8 @@ MITRA · cohort-2026
 
 | Module | Project | Status |
 |---|---|---|
-| 1 — Git & GitHub | [module-1](module-1/) | 🚧 In progress |
-| 2 — Web Foundations | — | Not started |
-| 3 — Python | — | Not started |
-| 4 — DSA | — | Not started |
-| 5 — Capstone | — | Not started |
-| 6 — AI Foundations | — | Not started |
+| 1 — ANN Regression | [module-1](module-1/) | 🚧 In progress |
 
 ## Links
 
-- Portfolio: <!-- once you've built it in Module 2 -->
 - GitHub: https://github.com/your-github-username

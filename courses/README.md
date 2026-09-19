@@ -9,12 +9,11 @@ on deploy.
 ```
 courses/
 ├── courses.json          ← the syllabus: modules, lessons, video links
-├── 01-git-github/        ← lesson notes, one Markdown file per lesson
-├── 02-web-foundations/
-├── 03-python/
-├── 04-dsa/
-├── 05-capstone/
-└── 06-ai-foundations/
+└── 01-ann-regression/    ← lesson notes, the notebook, and its dataset
+    ├── README.md
+    ├── 1.1-ann-regression.md
+    ├── ann-regression.ipynb
+    └── Student_Performance.csv
 ```
 
 ## Linking a video

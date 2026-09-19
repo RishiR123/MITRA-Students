@@ -193,9 +193,9 @@ directly to `main`. `main` is protected — you must push a branch.
 ## Commit message guide
 
 ```
-Module 3: CLI weather tool — Priya Sharma     ← good
-Fix argument parsing in weather.py            ← good
-Add error handling for invalid city names     ← good
+Module 1: ANN regression notebook — Priya Sharma  ← good
+Fix input shape in the training loop             ← good
+Add loss printing every 100 iterations           ← good
 
 update                                        ← bad
 asdf                                          ← bad

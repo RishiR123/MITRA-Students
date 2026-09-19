@@ -77,11 +77,7 @@ A PR that touches anything else will be flagged by CI.
 
 | # | Module | You'll build |
 |---|--------|--------------|
-| 1 | Git & GitHub Fundamentals | Your profile README + first PR |
-| 2 | Web Foundations — HTML, CSS, JS | A responsive personal portfolio |
-| 3 | Python Programming | A command-line tool of your choice |
-| 4 | Data Structures & Algorithms | 15 solved problems, explained |
-| 5 | Capstone — Build & Ship | A real, deployed application |
+| 1 | [ANN Regression](courses/01-ann-regression/) | A one-neuron network trained in PyTorch, end to end |
 
 Full lesson-by-lesson breakdown is on the [course site](https://rishir123.github.io/MITRA-Students/),
 and the source of truth is [`courses/courses.json`](courses/courses.json).

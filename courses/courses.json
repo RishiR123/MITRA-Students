@@ -1,627 +1,76 @@
 {
   "program": "MITRA",
   "tagline": "Learn by watching. Prove it by shipping.",
+  "headline": "Teach a machine to draw one straight line.",
+  "lede": "One neuron holds two numbers. Training is the loop that turns them from random into right. Every network you will ever meet is this loop, with more neurons — so this is the one to understand properly.",
   "cohort": "cohort-2026",
-  "updated": "2026-09-18",
+  "updated": "2026-09-19",
   "repo": "https://github.com/RishiR123/MITRA-Students",
   "_howToAddAVideo": "Set lesson.video to {\"provider\":\"youtube\",\"id\":\"<11-char id>\"}, {\"provider\":\"vimeo\",\"id\":\"<numeric id>\"}, or {\"provider\":\"mp4\",\"url\":\"https://...\"}. Leave provider as \"pending\" until the video is recorded — the site shows a placeholder instead of a broken player.",
   "modules": [
     {
       "id": "module-1",
       "number": 1,
-      "title": "Git & GitHub Fundamentals",
-      "summary": "The workflow you'll use for every single submission in this program, and for the rest of your career. Version control, branching, and pull requests.",
-      "duration": "≈ 5 hours",
-      "project": "Fix a deliberately broken file and submit it as your first pull request.",
+      "title": "ANN Regression",
+      "summary": "A neural network that predicts a number. One neuron, one straight line, and the training loop that every larger network is built from — model, loss, optimiser, repeat.",
+      "duration": "≈ 1 hour",
+      "project": "Train the notebook on a feature that actually carries signal, print the loss as it falls, then swap in a hidden layer without changing the training loop.",
       "outcomes": [
-        "Explain what a commit actually is",
-        "Create a branch, push it, and open a pull request",
-        "Read a diff and resolve a merge conflict without panicking",
-        "Respond to code review comments"
+        "Name the four pieces every trained network needs, and what each one does",
+        "Build and train nn.Linear in PyTorch, end to end",
+        "Explain what zero_grad, backward and step each do in the loop",
+        "Shape data to (rows, features) and debug a shape error",
+        "Read a learned weight as a claim about the data — and spot a feature with no signal"
       ],
       "lessons": [
         {
           "id": "1.1",
-          "title": "Why version control exists",
-          "duration": "11:20",
+          "title": "ANN Regression — training one neuron in PyTorch",
+          "duration": "—",
           "video": {
-            "provider": "mp4",
-            "url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+            "provider": "pending"
           },
-          "notes": "courses/01-git-github/1.1-why-version-control.md",
+          "notes": "courses/01-ann-regression/1.1-ann-regression.md",
           "resources": [
             {
-              "label": "Pro Git — Chapter 1",
-              "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control"
-            }
-          ]
-        },
-        {
-          "id": "1.2",
-          "title": "Your first repository: init, add, commit",
-          "duration": "18:05",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/01-git-github/1.2-first-repository.md",
-          "resources": [
+              "label": "The notebook — ann-regression.ipynb",
+              "url": "https://github.com/RishiR123/MITRA-Students/blob/main/courses/01-ann-regression/ann-regression.ipynb"
+            },
             {
-              "label": "git add / git commit docs",
-              "url": "https://git-scm.com/docs/git-commit"
-            }
-          ]
-        },
-        {
-          "id": "1.3",
-          "title": "Branching and merging",
-          "duration": "22:40",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/01-git-github/1.3-branching-merging.md",
-          "resources": [
+              "label": "Dataset — Student_Performance.csv",
+              "url": "https://github.com/RishiR123/MITRA-Students/blob/main/courses/01-ann-regression/Student_Performance.csv"
+            },
             {
-              "label": "Learn Git Branching (interactive)",
-              "url": "https://learngitbranching.js.org/"
-            }
-          ]
-        },
-        {
-          "id": "1.4",
-          "title": "Remotes: push, pull, and the GitHub side",
-          "duration": "16:15",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/01-git-github/1.4-remotes.md",
-          "resources": []
-        },
-        {
-          "id": "1.5",
-          "title": "Pull requests and code review",
-          "duration": "24:30",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/01-git-github/1.5-pull-requests.md",
-          "resources": [
-            {
-              "label": "MITRA submission guide",
-              "url": "https://github.com/RishiR123/MITRA-Students/blob/main/CONTRIBUTING.md"
-            }
-          ]
-        },
-        {
-          "id": "1.6",
-          "title": "When it goes wrong: conflicts, reset, and reflog",
-          "duration": "19:50",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/01-git-github/1.6-when-it-goes-wrong.md",
-          "resources": [
-            {
-              "label": "Oh Shit, Git!?!",
-              "url": "https://ohshitgit.com/"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "module-2",
-      "number": 2,
-      "title": "Web Foundations — HTML, CSS, JavaScript",
-      "summary": "Build things people can actually open in a browser. Semantic markup, modern layout, and enough JavaScript to make a page respond to a human.",
-      "duration": "≈ 14 hours",
-      "project": "A responsive personal portfolio, deployed live on GitHub Pages.",
-      "outcomes": [
-        "Write semantic, accessible HTML",
-        "Lay out a page with Flexbox and Grid, and make it work on a phone",
-        "Manipulate the DOM and handle events",
-        "Fetch data from an API and render it",
-        "Deploy a static site"
-      ],
-      "lessons": [
-        {
-          "id": "2.1",
-          "title": "How the web actually works",
-          "duration": "14:10",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/02-web-foundations/2.1-how-the-web-works.md",
-          "resources": []
-        },
-        {
-          "id": "2.2",
-          "title": "Semantic HTML and accessibility",
-          "duration": "21:35",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/02-web-foundations/2.2-semantic-html.md",
-          "resources": [
-            {
-              "label": "MDN — HTML elements",
-              "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element"
-            }
-          ]
-        },
-        {
-          "id": "2.3",
-          "title": "CSS fundamentals: the box model and cascade",
-          "duration": "25:00",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/02-web-foundations/2.3-css-fundamentals.md",
-          "resources": []
-        },
-        {
-          "id": "2.4",
-          "title": "Flexbox and Grid",
-          "duration": "28:45",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/02-web-foundations/2.4-flexbox-grid.md",
-          "resources": [
-            {
-              "label": "CSS Tricks — Flexbox guide",
-              "url": "https://css-tricks.com/snippets/css/a-guide-to-flexbox/"
-            }
-          ]
-        },
-        {
-          "id": "2.5",
-          "title": "Responsive design and media queries",
-          "duration": "19:20",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/02-web-foundations/2.5-responsive-design.md",
-          "resources": []
-        },
-        {
-          "id": "2.6",
-          "title": "JavaScript basics: values, functions, control flow",
-          "duration": "31:15",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/02-web-foundations/2.6-javascript-basics.md",
-          "resources": [
-            {
-              "label": "Eloquent JavaScript",
-              "url": "https://eloquentjavascript.net/"
-            }
-          ]
-        },
-        {
-          "id": "2.7",
-          "title": "The DOM and event handling",
-          "duration": "26:40",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/02-web-foundations/2.7-dom-events.md",
-          "resources": []
-        },
-        {
-          "id": "2.8",
-          "title": "Fetching data: promises, async/await, APIs",
-          "duration": "29:05",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/02-web-foundations/2.8-fetching-data.md",
-          "resources": []
-        },
-        {
-          "id": "2.9",
-          "title": "Deploying to GitHub Pages",
-          "duration": "12:30",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/02-web-foundations/2.9-deploying.md",
-          "resources": []
-        }
-      ]
-    },
-    {
-      "id": "module-3",
-      "number": 3,
-      "title": "Python Programming",
-      "summary": "A real second language, and the one you'll use for scripting, data, and automation. Ends with a command-line tool you'd actually use.",
-      "duration": "≈ 12 hours",
-      "project": "A command-line tool of your own design, with argument parsing and error handling.",
-      "outcomes": [
-        "Write idiomatic Python, not Java-with-different-syntax",
-        "Structure a program across modules",
-        "Read and write files, and call APIs",
-        "Handle errors properly instead of ignoring them",
-        "Write tests with pytest"
-      ],
-      "lessons": [
-        {
-          "id": "3.1",
-          "title": "Setting up Python properly (and virtualenvs)",
-          "duration": "15:45",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/03-python/3.1-setup.md",
-          "resources": []
-        },
-        {
-          "id": "3.2",
-          "title": "Types, collections, and control flow",
-          "duration": "27:20",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/03-python/3.2-types-collections.md",
-          "resources": []
-        },
-        {
-          "id": "3.3",
-          "title": "Functions, scope, and the things that surprise people",
-          "duration": "23:10",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/03-python/3.3-functions.md",
-          "resources": []
-        },
-        {
-          "id": "3.4",
-          "title": "Files, JSON, and the standard library",
-          "duration": "20:50",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/03-python/3.4-files-stdlib.md",
-          "resources": []
-        },
-        {
-          "id": "3.5",
-          "title": "Classes and when not to use them",
-          "duration": "24:35",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/03-python/3.5-classes.md",
-          "resources": []
-        },
-        {
-          "id": "3.6",
-          "title": "Errors, exceptions, and defensive code",
-          "duration": "18:25",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/03-python/3.6-errors.md",
-          "resources": []
-        },
-        {
-          "id": "3.7",
-          "title": "Building a CLI with argparse",
-          "duration": "22:00",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/03-python/3.7-building-a-cli.md",
-          "resources": []
-        },
-        {
-          "id": "3.8",
-          "title": "Testing with pytest",
-          "duration": "25:15",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/03-python/3.8-testing.md",
-          "resources": [
-            {
-              "label": "pytest docs",
-              "url": "https://docs.pytest.org/"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "module-4",
-      "number": 4,
-      "title": "Data Structures & Algorithms",
-      "summary": "The part that makes interviews survivable and your code fast. Taught through problems, not lectures.",
-      "duration": "≈ 16 hours",
-      "project": "15 solved problems, each with a written explanation of your approach and its complexity.",
-      "outcomes": [
-        "Reason about time and space complexity out loud",
-        "Choose the right data structure for a problem",
-        "Recognise the handful of patterns that cover most problems",
-        "Explain your solution clearly — which is the actual interview skill"
-      ],
-      "lessons": [
-        {
-          "id": "4.1",
-          "title": "Big-O without the maths degree",
-          "duration": "20:30",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/04-dsa/4.1-big-o.md",
-          "resources": []
-        },
-        {
-          "id": "4.2",
-          "title": "Arrays, strings, and two pointers",
-          "duration": "26:15",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/04-dsa/4.2-arrays-two-pointers.md",
-          "resources": []
-        },
-        {
-          "id": "4.3",
-          "title": "Hash maps: the answer to most problems",
-          "duration": "23:40",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/04-dsa/4.3-hash-maps.md",
-          "resources": []
-        },
-        {
-          "id": "4.4",
-          "title": "Stacks, queues, and linked lists",
-          "duration": "25:50",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/04-dsa/4.4-stacks-queues-lists.md",
-          "resources": []
-        },
-        {
-          "id": "4.5",
-          "title": "Trees and traversal",
-          "duration": "29:20",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/04-dsa/4.5-trees.md",
-          "resources": []
-        },
-        {
-          "id": "4.6",
-          "title": "Graphs, BFS and DFS",
-          "duration": "31:00",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/04-dsa/4.6-graphs.md",
-          "resources": []
-        },
-        {
-          "id": "4.7",
-          "title": "Sorting, searching, and binary search",
-          "duration": "24:45",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/04-dsa/4.7-sorting-searching.md",
-          "resources": []
-        },
-        {
-          "id": "4.8",
-          "title": "Recursion and an introduction to DP",
-          "duration": "33:10",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/04-dsa/4.8-recursion-dp.md",
-          "resources": []
-        }
-      ]
-    },
-    {
-      "id": "module-5",
-      "number": 5,
-      "title": "Capstone — Build & Ship",
-      "summary": "One real application, taken from an idea to a URL a stranger can open. This is the module that goes on your CV.",
-      "duration": "≈ 4 weeks",
-      "project": "A deployed, working application of your own design, proposed and approved in advance.",
-      "outcomes": [
-        "Scope a project so it can actually be finished",
-        "Work from a plan instead of vibes",
-        "Deploy and keep something running",
-        "Write a README that makes someone want to try it",
-        "Demo your own work convincingly"
-      ],
-      "lessons": [
-        {
-          "id": "5.1",
-          "title": "Choosing a project you'll finish",
-          "duration": "17:40",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/05-capstone/5.1-choosing-a-project.md",
-          "resources": [
-            {
-              "label": "Submit your proposal",
-              "url": "https://github.com/RishiR123/MITRA-Students/issues/new?template=project-proposal.yml"
-            }
-          ]
-        },
-        {
-          "id": "5.2",
-          "title": "From idea to plan: scoping and milestones",
-          "duration": "21:05",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/05-capstone/5.2-scoping.md",
-          "resources": []
-        },
-        {
-          "id": "5.3",
-          "title": "Picking a stack and setting up",
-          "duration": "23:30",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/05-capstone/5.3-picking-a-stack.md",
-          "resources": []
-        },
-        {
-          "id": "5.4",
-          "title": "Databases and authentication, briefly",
-          "duration": "27:55",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/05-capstone/5.4-data-and-auth.md",
-          "resources": []
-        },
-        {
-          "id": "5.5",
-          "title": "Deploying for real",
-          "duration": "22:20",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/05-capstone/5.5-deploying.md",
-          "resources": []
-        },
-        {
-          "id": "5.6",
-          "title": "Writing a README people read",
-          "duration": "14:50",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/05-capstone/5.6-readme.md",
-          "resources": []
-        },
-        {
-          "id": "5.7",
-          "title": "Demo day: presenting your work",
-          "duration": "16:35",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/05-capstone/5.7-demo-day.md",
-          "resources": []
-        }
-      ]
-    },
-    {
-      "id": "module-6",
-      "number": 6,
-      "title": "AI Foundations",
-      "summary": "How machines actually learn, built up from the simplest possible model. One straight line, then a network, then the thing behind ChatGPT — and finally the maths that was quietly running underneath all three.",
-      "duration": "≈ 11 hours",
-      "project": "Train a linear regression model and a small neural network on a real dataset, then write up what each one learned and where each one fails.",
-      "outcomes": [
-        "Explain what 'training a model' means in terms of a loss going down",
-        "Implement linear regression from scratch, including gradient descent",
-        "Build and train a small neural network, and say what each layer is doing",
-        "Explain attention, tokens, and why an LLM predicts the next token",
-        "Read the maths notation in an AI paper without freezing"
-      ],
-      "lessons": [
-        {
-          "id": "6.1",
-          "title": "Linear regression — the simplest model that learns",
-          "duration": "28:15",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/06-ai-foundations/6.1-linear-regression.md",
-          "resources": [
-            {
-              "label": "scikit-learn — Linear models",
-              "url": "https://scikit-learn.org/stable/modules/linear_model.html"
+              "label": "PyTorch — Learn the Basics",
+              "url": "https://docs.pytorch.org/tutorials/beginner/basics/intro.html"
             },
             {
               "label": "3Blue1Brown — Gradient descent",
               "url": "https://www.3blue1brown.com/lessons/gradient-descent"
             }
           ]
+        }
+      ],
+      "concepts": [
+        {
+          "what": "Model",
+          "code": "nn.Linear(1, 1)",
+          "does": "Holds the two numbers that get adjusted"
         },
         {
-          "id": "6.2",
-          "title": "Artificial neural networks",
-          "duration": "34:40",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/06-ai-foundations/6.2-neural-networks.md",
-          "resources": [
-            {
-              "label": "3Blue1Brown — Neural networks series",
-              "url": "https://www.3blue1brown.com/topics/neural-networks"
-            },
-            {
-              "label": "PyTorch — 60 minute blitz",
-              "url": "https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html"
-            },
-            {
-              "label": "TensorFlow Playground (run one in your browser)",
-              "url": "https://playground.tensorflow.org/"
-            }
-          ]
+          "what": "Loss",
+          "code": "nn.MSELoss()",
+          "does": "Scores how wrong a prediction is"
         },
         {
-          "id": "6.3",
-          "title": "LLM basics — tokens, attention, and next-token prediction",
-          "duration": "31:20",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/06-ai-foundations/6.3-llm-basics.md",
-          "resources": [
-            {
-              "label": "The Illustrated Transformer",
-              "url": "https://jalammar.github.io/illustrated-transformer/"
-            },
-            {
-              "label": "Attention Is All You Need (the original paper)",
-              "url": "https://arxiv.org/abs/1706.03762"
-            },
-            {
-              "label": "Anthropic — Claude API docs",
-              "url": "https://docs.claude.com/en/api/overview"
-            }
-          ]
+          "what": "Optimiser",
+          "code": "torch.optim.SGD(...)",
+          "does": "Decides how to adjust them, and by how much"
         },
         {
-          "id": "6.4",
-          "title": "Math for AI — the parts you actually need",
-          "duration": "37:05",
-          "video": {
-            "provider": "pending"
-          },
-          "notes": "courses/06-ai-foundations/6.4-math-for-ai.md",
-          "resources": [
-            {
-              "label": "3Blue1Brown — Essence of linear algebra",
-              "url": "https://www.3blue1brown.com/topics/linear-algebra"
-            },
-            {
-              "label": "Mathematics for Machine Learning (free book)",
-              "url": "https://mml-book.github.io/"
-            },
-            {
-              "label": "3Blue1Brown — Essence of calculus",
-              "url": "https://www.3blue1brown.com/topics/calculus"
-            }
-          ]
+          "what": "Loop",
+          "code": "for i in range(1000)",
+          "does": "Repeats until the loss stops falling"
         }
       ]
     }

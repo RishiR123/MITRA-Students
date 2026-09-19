@@ -23,8 +23,8 @@ body:
       label: Steps to reproduce
       placeholder: |
         1. Open the course site
-        2. Click Module 3
-        3. Click lesson 3.2
+        2. Click Module 1
+        3. Click lesson 1.1
         4. Player shows a blank box
     validations:
       required: true

@@ -11,11 +11,7 @@
 
 <!-- Put an x in the box: [x] -->
 
-- [ ] Module 1 — Git & GitHub Fundamentals
-- [ ] Module 2 — Web Foundations
-- [ ] Module 3 — Python Programming
-- [ ] Module 4 — Data Structures & Algorithms
-- [ ] Module 5 — Capstone
+- [ ] Module 1 — ANN Regression
 - [ ] Other / extra credit
 
 ## How to run it

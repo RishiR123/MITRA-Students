@@ -28,7 +28,7 @@ body:
     attributes:
       label: Where is it?
       description: Module and lesson, or paste the URL.
-      placeholder: "Module 2, lesson 2.4 — Flexbox"
+      placeholder: "Module 1, lesson 1.1 — ANN Regression"
     validations:
       required: true
 
