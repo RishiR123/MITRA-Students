@@ -1,20 +1,16 @@
-# <Your Name>
+# Devanand Uppuluri
 
-<!--
-  Rename this folder to your GitHub username, then replace everything here.
-  Keep it short — this is the index of your work, not an essay.
--->
 
 MITRA · cohort-2026
 
-**One line about you.** What you were doing before this, and what you want to build.
+AI & Data Science student building practical projects in Machine Learning, Generative AI, and AI-driven applications.
 
 ## Submissions
 
 | Module | Project | Status |
 |---|---|---|
-| 1 — ANN Regression | [module-1](module-1/) | 🚧 In progress |
+| 1 – ANN Regression | [module-1](module-1/) | ✅ Completed |
 
 ## Links
 
-- GitHub: https://github.com/your-github-username
+- GitHub: https://github.com/devauppuluri-alt

@@ -1,30 +1,25 @@
-# Module 1 — <what you built>
-
-<!--
-  Every module folder needs a README like this one. CI checks it exists; a mentor
-  checks it's useful. Delete these comments before submitting.
--->
+# Module 1 — ANN Regression
 
 ## What this is
 
-Two or three sentences. What does it do, and what was the assignment?
+This project implements an Artificial Neural Network (ANN) for regression. The assignment focuses on building, training, and evaluating a neural network model to predict a continuous target value from input data.
 
 ## How to run it
 
-```bash
-# Commands a mentor can copy-paste. Assume they have nothing installed.
-```
+bash
+python new_linear__regression.py
+
 
 ## What I learned
 
-The genuinely new thing, not a summary of the lesson. "I finally understood that a branch
-is just a pointer to a commit" is a good answer.
+I finally understood that training an ANN is basically the model learning from its mistakes. Each prediction error helps it adjust its weights and improve the next prediction.
 
 ## What I struggled with
 
-Be specific and be honest. This is the most useful thing in the file — for you and for us.
+I initially struggled to understand how the neural network actually improves during training. Seeing how the loss changes while the weights are updated helped me connect the code with what the model is doing internally.
 
 ## Sources
 
-Tutorials, docs, Stack Overflow, AI assistance. List anything you leaned on. Honesty here
-costs you nothing.
+
+MITRA — Module 1.1: ANN Regression  
+https://rishir123.github.io/MITRA-Students/#/module-1/1.1
